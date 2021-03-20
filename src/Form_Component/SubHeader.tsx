@@ -1,4 +1,4 @@
-export function SubHeader(props){
+export function SubHeader(props:any){
 
     
     return(

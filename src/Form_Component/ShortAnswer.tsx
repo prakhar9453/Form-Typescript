@@ -1,7 +1,7 @@
 import {Question} from  "../AtomicComponent/QuestionAndDescription";
-export function ShortAnswer(props){
+export function ShortAnswer(props:any){
 
-    function setValueAndIsRequired(event){
+    function setValueAndIsRequired(event:React.FocusEvent<HTMLInputElement>){
 
         if(props.required==="1"){
             
@@ -9,19 +9,19 @@ export function ShortAnswer(props){
 
             if(event.target.value==="")
             {
-            parent=event.target.parentNode;
+            parent=(event.target as HTMLElement).parentNode as HTMLElement;
             parent.style.border="2px solid red";
             }
             else
             {
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLElement).parentNode as HTMLElement;
                 parent.style.border="1.5px solid black";
             }   
         }
 
         props.handler(event.target.value);
     }
-    function checkIsRequired(event){
+    function checkIsRequired(event:React.FocusEvent<HTMLInputElement>){
 
         var parent;
     
@@ -29,12 +29,12 @@ export function ShortAnswer(props){
 
             if(event.target.value==="")
             {
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLElement).parentNode as HTMLElement;
                 parent.style.border="2px solid red";
             }
             else
             {
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLElement).parentNode as HTMLElement;
                 parent.style.border="1.5px solid black";
             }
 
@@ -43,7 +43,7 @@ export function ShortAnswer(props){
             {
                 if(!props.validPhone)
                 {
-                    parent=event.target.parentNode;
+                    parent=(event.target as HTMLElement).parentNode as HTMLElement;
                     parent.style.border="2px solid red";
                 }
             }

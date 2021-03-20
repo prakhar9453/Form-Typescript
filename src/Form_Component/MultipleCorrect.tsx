@@ -1,6 +1,7 @@
 import {useState} from "react";
+import React from "react";
 import {Question} from "../AtomicComponent/QuestionAndDescription"
-export function MultipleCorrect(props){
+export function MultipleCorrect(props:any){
 
     var [selected,setSelected]=useState(-1);
     var selectedOptions=new Array(props.options.length);
@@ -9,18 +10,18 @@ export function MultipleCorrect(props){
     var [selectedOption,setSelectedOption]=useState(selectedOptions);
 
 
-    function changeOption(event){
+    function changeOption(event:React.ChangeEvent<HTMLInputElement>|React.MouseEvent<HTMLButtonElement>){
 
-        var index=event.target.id;
-        var ans=[];
-        var select=[];
+        var indexId:string=(event.target as HTMLElement).id;
+        var ans:string[]=[];
+        var select:boolean[]=[];
 
-        if(index==="clearSelection")
+        if(indexId==="clearSelection")
         {
             if(props.required==="1")
             {
                 let parent;
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLElement).parentNode as HTMLElement;
                 parent.style.border="2px solid red";
             }
            select.fill(false);
@@ -29,7 +30,7 @@ export function MultipleCorrect(props){
            props.handler(ans);
            return;
         }
-
+        var index:number=parseInt(indexId);
         if(selectedOption[index]===true)
         {
             
@@ -58,15 +59,15 @@ export function MultipleCorrect(props){
             if(ans.length===0)
             {
                 let parent;
-                parent=event.target.parentNode;
-                parent.parentNode.style.border="2px solid red";
+                parent=(event.target as HTMLElement).parentNode as HTMLElement;
+                (parent.parentNode as HTMLElement).style.border="2px solid red";
 
             }
             else
             {
                 let parent;
-                parent=event.target.parentNode;
-                parent.parentNode.style.border="1.5px solid black";
+                parent=(event.target as HTMLElement).parentNode as HTMLElement;
+                (parent.parentNode as HTMLElement).style.border="1.5px solid black";
             }
         }
         props.handler(ans);
@@ -78,10 +79,10 @@ export function MultipleCorrect(props){
 
             <Question question={props.question} required={props.required} isDespcription={props.isDespcription} description={props.description}/>
 
-            {props.options.map((x,i)=>{
+            {props.options.map((x:string,i:number)=>{
                 return(
                     <div key={i} style={{display:"flex",padding:"10px",alignItems:"center"}}>
-                        <input id={i} type="checkbox" onChange={changeOption} checked={selectedOption[i]}></input>
+                        <input id={i.toString()} type="checkbox" onChange={changeOption} checked={selectedOption[i]}></input>
                         <label style={{fontSize:"1.2vw"}}>{x}</label>
                     </div>
                 );

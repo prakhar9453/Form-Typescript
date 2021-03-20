@@ -1,12 +1,12 @@
-import {FormHeader} from "./Form_Component/FormHeader.js"
-import {FormDetails} from "./Form_Component/FormDetails.js"
-import { SingleCorrect } from "./Form_Component/SingleCorrect.js";
+import {FormHeader} from "./Form_Component/FormHeader"
+import {FormDetails} from "./Form_Component/FormDetails"
+import { SingleCorrect } from "./Form_Component/SingleCorrect";
 import {useState} from "react";
-import { MultipleCorrect } from "./Form_Component/MultipleCorrect.js";
-import { ShortAnswer } from "./Form_Component/ShortAnswer.js";
-import { LongAnswer } from "./Form_Component/LongAnswer.js";
-import { Submit } from "./Form_Component/Submit.js";
-import { SubHeader } from "./Form_Component/SubHeader.js";
+import { MultipleCorrect } from "./Form_Component/MultipleCorrect";
+import { ShortAnswer } from "./Form_Component/ShortAnswer";
+import { LongAnswer } from "./Form_Component/LongAnswer";
+import { Submit } from "./Form_Component/Submit";
+import { SubHeader } from "./Form_Component/SubHeader";
 
 export function App(){
 
@@ -24,7 +24,7 @@ export function App(){
 
     var [phone,setPhone]=useState("");
     var [validPhone,setValidPhone]=useState(true);
-    function ValidateandSetPhone(phone){
+    function ValidateandSetPhone(phone:string){
 
         var element,firstChild;
         setPhone(phone);
@@ -37,15 +37,15 @@ export function App(){
 
         if(result)
         {
-            element=document.getElementById("phone");
-            firstChild=element.childNodes;
+            element=document.getElementById("phone") as HTMLElement;
+            firstChild=element.childNodes as NodeListOf<HTMLElement>;
             firstChild[0].style.border="1.5px black solid";
 
         }
         else
         {
-            element=document.getElementById("phone");
-            firstChild=element.childNodes;
+            element=document.getElementById("phone") as HTMLElement;
+            firstChild=element.childNodes as NodeListOf<HTMLElement>;
             firstChild[0].style.border="2px red solid";
 
         }
@@ -54,7 +54,7 @@ export function App(){
     var [email,setEmail]=useState("");
     var [validEmail,setValidEmail]=useState(true);
 
-    function ValidateandSetEmail(email){
+    function ValidateandSetEmail(email:string){
 
         var element,firstChild;
 
@@ -69,15 +69,15 @@ export function App(){
 
         if(result || email==="")
         {
-            element=document.getElementById("email");
-            firstChild=element.childNodes;
+            element=document.getElementById("email") as HTMLElement;
+            firstChild=element.childNodes as NodeListOf<HTMLElement>;
             firstChild[0].style.border="1.5px black solid";
 
         }
         else
         {
-            element=document.getElementById("email");
-            firstChild=element.childNodes;
+            element=document.getElementById("email") as HTMLElement;
+            firstChild=element.childNodes as NodeListOf<HTMLElement>;
             firstChild[0].style.border="2px red solid";
 
         }
@@ -88,7 +88,7 @@ export function App(){
 
     var [question,setQuestion]=useState("");
 
-    function validation(event){
+    function validation(event:Event){
         
         event.preventDefault();
         var errorArray=[];
@@ -97,43 +97,43 @@ export function App(){
        
         if(orderNo==="")
         {
-            element=document.getElementById("orderNo");
+            element=document.getElementById("orderNo") as HTMLElement;
             errorArray.push(element);
         }
         if(color.length===0)
         {
-            element=document.getElementById("color");
+            element=document.getElementById("color") as HTMLElement;
             errorArray.push(element);
         }
         if(name==="")
         {
-            element=document.getElementById("name");
+            element=document.getElementById("name") as HTMLElement;
             errorArray.push(element);
         }
         if(phone==="" || !validPhone)
         {
-            element=document.getElementById("phone");
+            element=document.getElementById("phone") as HTMLElement;
             errorArray.push(element);
         }
         if(!validEmail)
         {
-            element=document.getElementById("email");
+            element=document.getElementById("email") as HTMLElement;
             errorArray.push(element);
         }
         if(contact.length===0)
         {
-            element=document.getElementById("contactType");
+            element=document.getElementById("contactType") as HTMLElement;
             errorArray.push(element);
         }
 
         for(var i=0;i<errorArray.length;i++)
         {
-            var firstChild=errorArray[i].childNodes;
+            var firstChild=errorArray[i].childNodes as NodeListOf<HTMLElement>;
             firstChild[0].style.border="2px red solid";
         }
         if(errorArray.length!==0)
         {
-            errorArray[0].scrollIntoView();
+            errorArray[0]!.scrollIntoView();
             return;
         }
         else

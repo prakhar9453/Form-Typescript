@@ -1,4 +1,4 @@
-export function Submit(props){
+export function Submit(props:any){
 
     return(
 

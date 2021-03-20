@@ -1,4 +1,4 @@
-export function FormDetails(props){
+export function FormDetails(props:any){
 
     var email="mailto:"+props.email;
     return(

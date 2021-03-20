@@ -1,6 +1,5 @@
-export function Question(props){
+export function Question(props:any){
 
-    console.log(props);
 
     return(
         <div id="QuestionandDescriptionContainer">

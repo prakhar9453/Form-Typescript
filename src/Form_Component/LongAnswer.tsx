@@ -1,45 +1,46 @@
+import React from"react";
 import { Question } from "../AtomicComponent/QuestionAndDescription";
 
-export function LongAnswer(props){
+export function LongAnswer(props:any){
 
-    function setValueAndIsRequired(event){
+    function setValueAndIsRequired(event:React.FocusEvent<HTMLTextAreaElement>){
 
         if(props.required==="1"){
             
             var parent;
 
-            if(event.target.value==="")
+            if((event.target as HTMLTextAreaElement).value==="")
             {
-            parent=event.target.parentNode;
+            parent=(event.target as HTMLTextAreaElement).parentNode as HTMLElement;
             parent.style.border="2px solid red";
             }
             else
             {
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLTextAreaElement).parentNode as HTMLElement;
                 parent.style.border="1.5px solid black";
             }   
         }
 
-        var textArea=event.target;
+        var textArea=event.target as HTMLElement;
         textArea.style.height="0px";
         var height=textArea.scrollHeight;
         textArea.style.height=height+"px";
-        props.handler(event.target.value);
+        props.handler((event.target as HTMLTextAreaElement).value);
     }
-    function checkIsRequired(event){
+    function checkIsRequired(event:React.FocusEvent<HTMLTextAreaElement>){
 
         var parent;
     
         if(props.required==="1"){
 
-            if(event.target.value==="")
+            if((event.target as HTMLTextAreaElement).value==="")
             {
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLTextAreaElement).parentNode as HTMLElement;
                 parent.style.border="2px solid red";
             }
             else
             {
-                parent=event.target.parentNode;
+                parent=(event.target as HTMLTextAreaElement).parentNode as HTMLElement;
                 parent.style.border="1.5px solid black";
             }
         }
@@ -52,7 +53,7 @@ export function LongAnswer(props){
            <textarea 
            onBlur={checkIsRequired} 
            onChange={setValueAndIsRequired} 
-           rows="1" 
+           rows={1}
            style={{resize:"none",padding:"5px",marginTop:"0.5vh",boxSizing:"border-box" ,fontSize:"1vw",width:"40vw",border:"none",borderBottom:"1px solid black",outline:"none"}} 
            value={props.value} />
         </div>
